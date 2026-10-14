@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup # Used for parsing HTML content for extracting links
 from urllib.parse import urljoin, urlparse
-from datetime import date
+from datetime import date, datetime
 
-testUrl = "https://kalamazoomi.portal.civicclerk.com"
+testUrl = "https://www.oshtemo.org/Boards-Committees/Township-Board/Township-Board-Agenda-Packets"
 
 
 # https://kalamazoomi.portal.civicclerk.com
@@ -21,6 +21,16 @@ testUrl = "https://kalamazoomi.portal.civicclerk.com"
 civicClerkCheck = "civicclerk.com"  # Check if the URL is from CivicClerk
 civicClerkFileTypes = ("Agenda", "Agenda Packet")  # Only keep these kinds of files
 
+#=========================== Data Types ===============================#
+class Meeting:
+    def __init__(self, title, date, pdf_links):
+        self.title = title
+        self.date = date
+        self.pdf_links = pdf_links
+
+    def has_pdfs(self):
+        return len(self.pdf_links) > 0
+
 #=========================== Fetching ===============================#
 # Fetch all PDF links from a given HTML webpage (doesn't work for ones that load content dynamically with JavaScript)
 def fetch_pdfs_from_html_webpage(url):
@@ -29,16 +39,16 @@ def fetch_pdfs_from_html_webpage(url):
         response = requests.get(url, timeout=10)
         response.raise_for_status()
 
-        # 2) Parse the HTML content and extract all links that end with ".pdf"
+        # 2) Parse the HTML content and turn each link that ends with ".pdf" into a meeting (date not read yet)
         soup = BeautifulSoup(response.text, 'html.parser')
-        pdf_links = []
+        meetings = []
         for link in soup.find_all('a', href=True):
             if link['href'].lower().endswith('.pdf'):
-                pdf_links.append(urljoin(url, link['href']))
+                meetings.append(Meeting(link.get_text(strip=True), None, [urljoin(url, link['href'])]))
 
-        # 3) Return the list of PDF links
-        return pdf_links
-    except requests.RequestException as e:
+        # 3) Return the list of meetings
+        return meetings
+    except Exception as e:
         print(f"Error fetching {url}: {e}")
         return None
 
@@ -61,64 +71,53 @@ def fetch_pdfs_from_civic_clerk(url):
                 events += data["value"]
                 next_url, params = data.get("@odata.nextLink"), None
         except requests.RequestException as e:
-            print(f"Error fetching {next_url}: {e}")
-            return None
+            # Keep the meetings already fetched (later pages can't be reached without this one's "next page" link)
+            print(f"Error fetching {next_url}, results may be incomplete: {e}")
         
-        # 3) Turn each avalible published file into its PDF download link (Not all events have pdfs)
-        links = []
+        # 3) Turn each event into a meeting with its available PDF download links (Not all events have pdfs)
+        meetings = []
         for event in events:
+            pdf_links = []
             for file in event.get("publishedFiles", []):
-                # Check if the file is a PDF and of the desired type (agenda files)
+                
+                # 3.1) Check if the file is a PDF and of the desired type (agenda files), and store the link
                 is_pdf = file.get("url", "").lower().endswith(".pdf")
                 if is_pdf and file.get("type") in civicClerkFileTypes:
-                    links.append(f"{api}/Meetings/GetMeetingFileStream(fileId={file['fileId']},plainText=false)")
+                    link = f"{api}/Meetings/GetMeetingFileStream(fileId={file['fileId']},plainText=false)"
+                    pdf_links.append(link)
 
-        return links
+            # 3.2) Only keep events that have agenda PDFs
+            if pdf_links:
+                start = datetime.fromisoformat(event["startDateTime"]).date()  # "2026-10-14T18:00:00Z" -> 2026-10-14
+                meetings.append(Meeting(event["eventName"], start, pdf_links))
+
+        return meetings
     
     except Exception as e:
         print(f"Error processing CivicClerk data: {e}")
         return None
-
-#========================= Processing ===============================#
-
-
+    
 #========================= Main ===============================#
 def main():
     print(f"Fetching PDF links from: {testUrl}\n")
 
-    # 1) Fetch all pdf links from the given URL
-    pdf_links = []
+    # 1) Fetch all meetings from the given URL
     if civicClerkCheck in testUrl:
-        pdf_links = fetch_pdfs_from_civic_clerk(testUrl)
+        meetings = fetch_pdfs_from_civic_clerk(testUrl)
     else:
-        pdf_links = fetch_pdfs_from_html_webpage(testUrl)
+        meetings = fetch_pdfs_from_html_webpage(testUrl)
 
-    if not pdf_links: 
-        print("No PDF links found.")
+    if not meetings:
+        print("No meetings found.")
         return
 
-    print(f"PDF Links found:\n==============================")
-    for link in pdf_links:
-        print(link)
+    # 2) Print each meeting with its PDF links under it
+    print(f"Meetings found:\n==============================")
+    for meeting in meetings:
+        print(f"{meeting.date}  {meeting.title}")
+        for link in meeting.pdf_links:
+            print(f"    {link}")
 
 
-   
-
-    
-
-
-
-main()
-
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    main()
