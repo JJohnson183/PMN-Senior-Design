@@ -52,3 +52,11 @@ To check a different website, open `main.py` and change the `testUrl` line near 
 ```python
 testUrl = "https://kalamazoomi.portal.civicclerk.com"
 ```
+
+### 5) Save the output to a file (optional)
+
+`-X utf8` stops Windows from crashing on special characters like ✓. It is not an issue on Mac / Linux.
+
+```
+python -X utf8 main.py > result.txt
+```
