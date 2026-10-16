@@ -44,10 +44,10 @@ You will see `(.venv)` at the start of the terminal line when it is active.
 ### 4) Run the script
 
 ```
-python fetcher.py
+python main.py
 ```
 
-To check a different website, open `fetcher.py` and change the `testUrl` line near the top:
+To check a different website, open `main.py` and change the `testUrl` line near the top:
 
 ```python
 testUrl = "https://kalamazoomi.portal.civicclerk.com"

@@ -1,39 +1,16 @@
+from models import Meeting
 import requests
 from bs4 import BeautifulSoup # Used for parsing HTML content for extracting links
 from urllib.parse import urljoin, urlparse
 from datetime import date, datetime
 
-testUrl = "https://www.oshtemo.org/Boards-Committees/Township-Board/Township-Board-Agenda-Packets"
-
-
-# https://kalamazoomi.portal.civicclerk.com
-# https://kalamazoocomi.portal.civicclerk.com
-
-# https://www.ktwp.org/board-of-trustees-meetings/  (Also has multiple other urls)
-
-# https://www.oshtemo.org/Boards-Committees/Township-Board/Township-Board-Agenda-Packets
-# https://www.oshtemo.org/Boards-Committees/Planning-Commission/Planning-Commission-Agenda-Packets
-# https://www.oshtemo.org/Boards-Committees/Zoning-Board-of-Appeals/ZBA-Agenda-Packets
-# https://www.oshtemo.org/Boards-Committees/Downtown-Development-Authority/DDA-Agenda-Packets
-# https://www.oshtemo.org/Boards-Committees/Capital-Improvements-Committee/CIC-Agenda-Packets
-# https://www.oshtemo.org/Boards-Committees/South-Drake-Road-Corridor-Improvement-Authority/SoDA-Agenda-Packets
 
 civicClerkCheck = "civicclerk.com"  # Check if the URL is from CivicClerk
 civicClerkFileTypes = ("Agenda", "Agenda Packet")  # Only keep these kinds of files
 
-#=========================== Data Types ===============================#
-class Meeting:
-    def __init__(self, title, date, pdf_links):
-        self.title = title
-        self.date = date
-        self.pdf_links = pdf_links
 
-    def has_pdfs(self):
-        return len(self.pdf_links) > 0
-
-#=========================== Fetching ===============================#
 # Fetch all PDF links from a given HTML webpage (doesn't work for ones that load content dynamically with JavaScript)
-def fetch_pdfs_from_html_webpage(url):
+def fetch_meetings_from_html_webpage(url):
     try:
         # 1) Fetch the webpage content (HTML)
         response = requests.get(url, timeout=10)
@@ -53,7 +30,7 @@ def fetch_pdfs_from_html_webpage(url):
         return None
 
 # Fetch PDFs from CivicClerk API
-def fetch_pdfs_from_civic_clerk(url):
+def fetch_meetings_from_civic_clerk(url):
     try:
         # 1) Build the API address from the portal's city name (e.g. "kalamazoomi")
         tenant = urlparse(url).hostname.split(".")[0]
@@ -96,28 +73,9 @@ def fetch_pdfs_from_civic_clerk(url):
     except Exception as e:
         print(f"Error processing CivicClerk data: {e}")
         return None
-    
-#========================= Main ===============================#
-def main():
-    print(f"Fetching PDF links from: {testUrl}\n")
 
-    # 1) Fetch all meetings from the given URL
-    if civicClerkCheck in testUrl:
-        meetings = fetch_pdfs_from_civic_clerk(testUrl)
-    else:
-        meetings = fetch_pdfs_from_html_webpage(testUrl)
-
-    if not meetings:
-        print("No meetings found.")
-        return
-
-    # 2) Print each meeting with its PDF links under it
-    print(f"Meetings found:\n==============================")
-    for meeting in meetings:
-        print(f"{meeting.date}  {meeting.title}")
-        for link in meeting.pdf_links:
-            print(f"    {link}")
-
-
-if __name__ == "__main__":
-    main()
+# Fetch meetings from any specific site or general site 
+def fetch_meetings(url):
+    if civicClerkCheck in url:
+        return fetch_meetings_from_civic_clerk(url)
+    return fetch_meetings_from_html_webpage(url)
