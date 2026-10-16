@@ -1,9 +1,8 @@
-import io
 import requests
-import pdfplumber # Used for reading the text out of PDF files
+import pypdfium2 as pdfium # Used for reading the text out of PDF files
 
 
-# Extract the text from a PDF file (scanned PDFs are only images, so they have no text to read)
+# Extract the text from a PDF file
 def extract_info_from_pdf(pdf_url):
     try:
         # 1) Download the PDF into memory
@@ -11,10 +10,13 @@ def extract_info_from_pdf(pdf_url):
         response.raise_for_status()
 
         # 2) Read the text from every page and join it into one string
-        with pdfplumber.open(io.BytesIO(response.content)) as pdf:
-            text = "\n".join(page.extract_text() or "" for page in pdf.pages)
+        with pdfium.PdfDocument(response.content) as pdf:
+            text = "\n".join(page.get_textpage().get_text_bounded() for page in pdf)
 
-        # 3) Warn if no text was found, since the PDF is likely a scanned image
+        # 3) Use "\n" line endings, and remove the "\x02" PDFium puts where a word was hyphenated across two lines
+        text = text.replace("\r\n", "\n").replace("\x02", "")
+
+        # 4) Warn if no text was found since the PDF is likely a scanned image
         if not text.strip():
             print(f"No text found in {pdf_url}, it may be a scanned image")
 
