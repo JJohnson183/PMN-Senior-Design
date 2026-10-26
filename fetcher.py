@@ -67,10 +67,9 @@ def fetch_meetings_from_civic_clerk(url):
                     link = f"{api}/Meetings/GetMeetingFileStream(fileId={file['fileId']},plainText=false)"
                     pdf_links.append(link)
 
-            # 3.2) Only keep events that have agenda PDFs
-            if pdf_links:
-                start = datetime.fromisoformat(event["startDateTime"]).date()  # "2026-10-14T18:00:00Z" -> 2026-10-14
-                meetings.append(Meeting(event["eventName"], start, pdf_links))
+            # 3.2) Keep every event, even ones with no agenda PDFs posted yet
+            start = datetime.fromisoformat(event["startDateTime"]).date()  # "2026-10-14T18:00:00Z" -> 2026-10-14
+            meetings.append(Meeting(event["eventName"], start, pdf_links))
 
         return meetings
     

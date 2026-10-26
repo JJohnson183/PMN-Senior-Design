@@ -2,7 +2,7 @@ from fetcher import fetch_meetings
 from processor import extract_info_from_pdf
 
 
-testUrl = "https://www.oshtemo.org/Boards-Committees/Township-Board/Township-Board-Agenda-Packets"
+testUrl = "https://kalamazoomi.portal.civicclerk.com"
 
 
 # https://kalamazoomi.portal.civicclerk.com
@@ -35,9 +35,10 @@ def main():
         for link in meeting.pdf_links:
             print(f"    {link}")
 
-    # 3) Extract the information from the PDFs (One for testing)
-    result = extract_info_from_pdf(meetings[0].pdf_links[0])
-    print(f"\n\n\n\nExtracted text from the first PDF:\n==============================\n{result}")
+    # 3) Summarize how many meetings got a date
+    dated = sum(meeting.date is not None for meeting in meetings)
+    print(f"\nSummary:\n==============================")
+    print(f"{len(meetings)} meetings, {dated} with a date, {len(meetings) - dated} without")
 
 if __name__ == "__main__":
     main()
