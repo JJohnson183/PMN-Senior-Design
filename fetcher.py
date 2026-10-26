@@ -1,4 +1,5 @@
 from models import Meeting
+from utils import extract_date
 import requests
 from bs4 import BeautifulSoup # Used for parsing HTML content for extracting links
 from urllib.parse import urljoin, urlparse
@@ -16,12 +17,15 @@ def fetch_meetings_from_html_webpage(url):
         response = requests.get(url, timeout=10)
         response.raise_for_status()
 
-        # 2) Parse the HTML content and turn each link that ends with ".pdf" into a meeting (date not read yet)
+        # 2) Parse the HTML content and turn each link that ends with ".pdf" into a meeting
         soup = BeautifulSoup(response.text, 'html.parser')
         meetings = []
         for link in soup.find_all('a', href=True):
             if link['href'].lower().endswith('.pdf'):
-                meetings.append(Meeting(link.get_text(strip=True), None, [urljoin(url, link['href'])]))
+                # 2.1) Read the date from the link text, or from the file name if the text has none
+                title = link.get_text(strip=True)
+                meeting_date = extract_date(title) or extract_date(link['href'])
+                meetings.append(Meeting(title, meeting_date, [urljoin(url, link['href'])]))
 
         # 3) Return the list of meetings
         return meetings
