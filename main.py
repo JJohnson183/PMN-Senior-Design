@@ -17,6 +17,20 @@ testUrl = "https://kalamazoomi.portal.civicclerk.com"
 # https://www.oshtemo.org/Boards-Committees/Capital-Improvements-Committee/CIC-Agenda-Packets
 # https://www.oshtemo.org/Boards-Committees/South-Drake-Road-Corridor-Improvement-Authority/SoDA-Agenda-Packets
 
+def print_meeting_info(meetings):
+    for meeting in meetings:
+        # 1) Print the meeting's basic information
+        print(f"\nTitle: {meeting.title}")
+        print(f"Date: {meeting.date}")
+        print(f"Location: {meeting.location}")
+        print(f"PDF Links: {meeting.pdf_links}")
+
+    # 2) Print a summary of the meetings
+    with_pdfs = sum(meeting.has_pdfs() for meeting in meetings)
+    dated = sum(meeting.date is not None for meeting in meetings)
+    located = sum(meeting.location is not None for meeting in meetings)
+    print(f"\nSummary:\n==============================")
+    print(f"{len(meetings)} meetings: {with_pdfs} with PDFs, {dated} with a date, {located} with a location")
 
 def main():
     print(f"Fetching PDF links from: {testUrl}\n")
@@ -28,17 +42,9 @@ def main():
         print("No meetings found.")
         return
 
-    # 2) Print each meeting with its PDF links under it
-    print(f"Meetings found:\n==============================")
-    for meeting in meetings:
-        print(f"{meeting.date}  {meeting.title}")
-        for link in meeting.pdf_links:
-            print(f"    {link}")
+    # Temp prints
+    print_meeting_info(meetings)
 
-    # 3) Summarize how many meetings got a date
-    dated = sum(meeting.date is not None for meeting in meetings)
-    print(f"\nSummary:\n==============================")
-    print(f"{len(meetings)} meetings, {dated} with a date, {len(meetings) - dated} without")
 
 if __name__ == "__main__":
     main()

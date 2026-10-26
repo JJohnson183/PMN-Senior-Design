@@ -67,9 +67,14 @@ def fetch_meetings_from_civic_clerk(url):
                     link = f"{api}/Meetings/GetMeetingFileStream(fileId={file['fileId']},plainText=false)"
                     pdf_links.append(link)
 
-            # 3.2) Keep every event, even ones with no agenda PDFs posted yet
+            # 3.2) Join the address parts that are filled in (e.g. "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007")
+            place = event.get("eventLocation") or {}
+            parts = [place.get("address1"), place.get("address2"), place.get("city"), f"{place.get('state') or ''} {place.get('zipCode') or ''}".strip()]
+            location = ", ".join(part for part in parts if part) or None
+
+            # 3.3) Keep every event, even ones with no agenda PDFs posted yet
             start = datetime.fromisoformat(event["startDateTime"]).date()  # "2026-10-14T18:00:00Z" -> 2026-10-14
-            meetings.append(Meeting(event["eventName"], start, pdf_links))
+            meetings.append(Meeting(event["eventName"], start, pdf_links, location))
 
         return meetings
     
