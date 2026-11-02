@@ -22,7 +22,7 @@ def fetch_meetings_from_html_webpage(url):
         meetings = []
         for link in soup.find_all('a', href=True):
             if link['href'].lower().endswith('.pdf'):
-                # 2.1) Read the date from the link text, or from the file name if the text has none
+                # 2.1) Date from the link text, otherwise the file name
                 title = link.get_text(strip=True)
                 meeting_date = extract_date(title) or extract_date(link['href'])
                 meetings.append(Meeting(title, meeting_date, [urljoin(url, link['href'])]))
@@ -67,12 +67,12 @@ def fetch_meetings_from_civic_clerk(url):
                     link = f"{api}/Meetings/GetMeetingFileStream(fileId={file['fileId']},plainText=false)"
                     pdf_links.append(link)
 
-            # 3.2) Join the address parts that are filled in (e.g. "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007")
+            # 3.2) Join the filled-in address parts: "City Hall, 241 W. South Street, Kalamazoo, MI 49007"
             place = event.get("eventLocation") or {}
             parts = [place.get("address1"), place.get("address2"), place.get("city"), f"{place.get('state') or ''} {place.get('zipCode') or ''}".strip()]
             location = ", ".join(part for part in parts if part) or None
 
-            # 3.3) Keep every event, even ones with no agenda PDFs posted yet
+            # 3.3) Keep every event, even without PDFs yet
             start = datetime.fromisoformat(event["startDateTime"]).date()  # "2026-10-14T18:00:00Z" -> 2026-10-14
             meetings.append(Meeting(event["eventName"], start, pdf_links, location))
 

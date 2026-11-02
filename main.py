@@ -1,5 +1,5 @@
 from fetcher import fetch_meetings
-from processor import extract_info_from_pdf
+from processor import extract_text_from_pdf
 
 
 testUrl = "https://kalamazoomi.portal.civicclerk.com"
