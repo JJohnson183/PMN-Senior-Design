@@ -1,7 +1,14 @@
 import re
 import requests
+import threading
 import pypdfium2 as pdfium # Used for reading the text out of PDF files
-from datetime import time
+from datetime import date, time, timedelta
+from email.utils import parsedate_to_datetime
+from utils import extract_date
+
+
+uploadWindowDays = 30  # Undated PDFs uploaded longer ago than this are too old to be an upcoming agenda
+pdfiumLock = threading.Lock()  # PDFium can't read PDFs on two threads at once
 
 #============================ Patterns ==============================#
 
@@ -37,8 +44,8 @@ sentencePlacePattern = re.compile(r"\b(?:at|in)\s+(?:the\s+)?([A-Z][^\n]{3,150}?
 # Leading "AT THE" / "IN THE" before a place name
 leadingWordsPattern = re.compile(r"^(?:at|in)\s+the\s+", re.I)
 
-#============================= General ====================================#
 
+#============================= Manual Extraction ==============================#
 # Extract the text from a PDF file
 def extract_text_from_pdf(pdf_url):
     try:
@@ -47,7 +54,7 @@ def extract_text_from_pdf(pdf_url):
         response.raise_for_status()
 
         # 2) Read the text from every page and join it into one string ("\f" marks each new page)
-        with pdfium.PdfDocument(response.content) as pdf:
+        with pdfiumLock, pdfium.PdfDocument(response.content) as pdf:
             text = "\f".join(page.get_textpage().get_text_bounded() for page in pdf)
 
         # 3) Use "\n" line endings, and remove the "\x02" PDFium puts where a word was hyphenated across two lines
@@ -62,12 +69,11 @@ def extract_text_from_pdf(pdf_url):
         print(f"Error extracting PDF {pdf_url}: {e}")
         return None
 
-#============================= Manual Extraction ==============================#
-
-# Location and start time from an agenda's first page (None if not found)
+# Date, location and start time from an agenda's first page (None if not found)
 def extract_meeting_info(text):
     header = get_header(text)
-    return {"location": extract_location(header), "time": extract_time(header)}
+    return {"date": extract_date(" ".join(header)), "location": extract_location(header), "time": extract_time(header)}
+
 
 # Non-blank lines on page 1 above the first agenda item
 def get_header(text):
@@ -133,3 +139,32 @@ def extract_location(header):
 #=========================== AI Extraction ===================================#
 
 # TODO
+
+
+
+#============================= Core Flow ====================================#
+# Fill a meeting's missing date, location and time from its first PDF (True if the PDF was read)
+def fill_missing_info(meeting):
+    # 1) Skip meetings with no PDF or nothing missing
+    if not meeting.has_pdfs() or None not in (meeting.date, meeting.location, meeting.time):
+        return False
+
+    # 2) Undated: skip files uploaded too long ago to be an upcoming agenda (read it if the server doesn't say)
+    link = meeting.pdf_links[0]
+    if meeting.date is None:
+        try:
+            uploaded = requests.head(link, timeout=10, allow_redirects=True).headers.get("Last-Modified")
+            if uploaded and parsedate_to_datetime(uploaded).date() < date.today() - timedelta(days=uploadWindowDays):
+                return False
+        except (requests.RequestException, ValueError, TypeError):
+            pass
+
+    # 3) Read the PDF and fill only the empty fields
+    text = extract_text_from_pdf(link)
+    if text is None:
+        return False
+    info = extract_meeting_info(text)
+    meeting.date = meeting.date or info["date"]
+    meeting.location = meeting.location or info["location"]
+    meeting.time = meeting.time or info["time"]
+    return True

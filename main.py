@@ -1,5 +1,4 @@
-from fetcher import fetch_meetings
-from processor import extract_text_from_pdf
+from fetcher import get_meetings
 
 
 testUrl = "https://kalamazoomi.portal.civicclerk.com"
@@ -22,21 +21,23 @@ def print_meeting_info(meetings):
         # 1) Print the meeting's basic information
         print(f"\nTitle: {meeting.title}")
         print(f"Date: {meeting.date}")
+        print(f"Time: {meeting.time}")
         print(f"Location: {meeting.location}")
         print(f"PDF Links: {meeting.pdf_links}")
 
     # 2) Print a summary of the meetings
     with_pdfs = sum(meeting.has_pdfs() for meeting in meetings)
     dated = sum(meeting.date is not None for meeting in meetings)
+    timed = sum(meeting.time is not None for meeting in meetings)
     located = sum(meeting.location is not None for meeting in meetings)
     print(f"\nSummary:\n==============================")
-    print(f"{len(meetings)} meetings: {with_pdfs} with PDFs, {dated} with a date, {located} with a location")
+    print(f"{len(meetings)} meetings: {with_pdfs} with PDFs, {dated} with a date, {timed} with a time, {located} with a location")
 
 def main():
     print(f"Fetching PDF links from: {testUrl}\n")
 
-    # 1) Fetch all meetings from the given URL
-    meetings = fetch_meetings(testUrl)
+    # 1) Fetch the upcoming meetings from the given URL, with missing info filled from their PDFs
+    meetings = get_meetings(testUrl)
 
     if not meetings:
         print("No meetings found.")
