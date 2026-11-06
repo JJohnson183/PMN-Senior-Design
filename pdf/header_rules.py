@@ -37,6 +37,12 @@ sentencePlacePattern = re.compile(r"\b(?:at|in)\s+(?:the\s+)?([A-Z][^\n]{3,150}?
 # Leading "AT THE" / "IN THE" before a place name
 leadingWordsPattern = re.compile(r"^(?:at|in)\s+the\s+", re.I)
 
+# A line starting with a number: "7275 W. Main Street"
+leadingNumberPattern = re.compile(r"\d")
+
+# Online-only meeting: "VIRTUAL ZOOM MEETING"
+onlinePattern = re.compile(r"\bvirtual\b|\bzoom meeting\b", re.I)
+
 
 #============================= Manual Extraction ==============================#
 # Date, location and start time from an agenda's first page (None if not found)
@@ -52,8 +58,10 @@ def get_header(text):
     lines = [line.strip() for line in firstPage.splitlines() if line.strip()]
 
     # 2) Cut at the first agenda item (Common first section headings)
-    end = next((i for i, line in enumerate(lines) if firstItemPattern.match(line)), len(lines))
-    return lines[:end]
+    for i, line in enumerate(lines):
+        if firstItemPattern.match(line):
+            return lines[:i]
+    return lines
 
 # First clock time in the header ("5:30 P.M." -> 17:30), or None
 def extract_time(header):
@@ -62,8 +70,10 @@ def extract_time(header):
     if not found:
         return None
 
-    # 2) Convert to 24-hour
-    hour = int(found.group(1)) % 12 + (12 if found.group(3).lower() == "p" else 0)
+    # 2) Convert to 24-hour ("12 A.M." -> 0, "5 P.M." -> 17)
+    hour = int(found.group(1)) % 12
+    if found.group(3).lower() == "p":
+        hour += 12
     return time(hour, int(found.group(2) or 0))
 
 # Meeting place as written in the header, or None (most specific way first)
@@ -73,35 +83,33 @@ def extract_location(header):
         labeled = labelPattern.match(line)
         if labeled:
             parts = [labeled.group(1)]
-            if i + 1 < len(header) and re.match(r"\d", header[i + 1]):
+            if i + 1 < len(header) and leadingNumberPattern.match(header[i + 1]):
                 parts.append(header[i + 1])
             return ", ".join(parts)
 
-    # 2) After "in-person at": "in-person in room 207A, ..."
+    # 2) After "in-person at" ("in-person in room 207A, ..."), otherwise in a sentence ("at the Township Hall to discuss")
     joined = " ".join(header)
-    inPerson = inPersonPattern.search(joined)
-    if inPerson:
-        return inPerson.group(1).rstrip(" ,")
+    found = inPersonPattern.search(joined) or sentencePlacePattern.search(joined)
+    if found:
+        return found.group(1).rstrip(" ,")
 
-    # 3) In a sentence: "at the Township Hall to discuss"
-    sentence = sentencePlacePattern.search(joined)
-    if sentence:
-        return sentence.group(1).rstrip(" ,")
-
-    # 4) Street address line, skipping the letterhead (followed by phone, fax or website)
+    # 3) Street address line, skipping the letterhead (followed by phone, fax or website)
     for i, line in enumerate(header):
         if not streetPattern.search(line) or contactPattern.search(" ".join(header[i:i + 3])):
             continue
 
-        # 4.1) Add the place name above and "City, ST 12345" below, if there
+        # 3.1) Add the place name above and "City, ST 12345" below, if there
         parts = [line]
         if i > 0 and placeWordPattern.search(header[i - 1]) and not streetPattern.search(header[i - 1]):
             parts.insert(0, header[i - 1])
         if i + 1 < len(header) and cityLinePattern.match(header[i + 1]):
             parts.append(header[i + 1])
 
-        # 4.2) Drop a leading "AT THE" / "IN THE"
+        # 3.2) Drop a leading "AT THE" / "IN THE"
         return leadingWordsPattern.sub("", ", ".join(parts))
 
-    # 5) Online only: "VIRTUAL ZOOM MEETING"
-    return next((line for line in header if re.search(r"\bvirtual\b|\bzoom meeting\b", line, re.I)), None)
+    # 4) Online only: "VIRTUAL ZOOM MEETING"
+    for line in header:
+        if onlinePattern.search(line):
+            return line
+    return None

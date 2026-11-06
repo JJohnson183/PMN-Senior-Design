@@ -17,7 +17,8 @@ class AgendaPdf:
     # Upload date from the server's "Last-Modified" header, or None if the server doesn't say
     def upload_date(self):
         try:
-            uploaded = requests.head(self.url, timeout=10, allow_redirects=True).headers.get("Last-Modified")
+            response = requests.head(self.url, timeout=10, allow_redirects=True)  # Headers only, no download
+            uploaded = response.headers.get("Last-Modified")
             return parsedate_to_datetime(uploaded).date() if uploaded else None
         except (requests.RequestException, ValueError, TypeError):
             return None

@@ -20,11 +20,12 @@ class HtmlPageFetcher(Fetcher):
             soup = BeautifulSoup(response.text, 'html.parser')
             meetings = []
             for link in soup.find_all('a', href=True):
-                if link['href'].lower().endswith('.pdf'):
+                href = link['href']
+                if href.lower().endswith('.pdf'):
                     # 2.1) Date from the link text, otherwise the file name
                     title = link.get_text(strip=True)
-                    meeting_date = extract_date(title) or extract_date(link['href'])
-                    meetings.append(Meeting(title, meeting_date, [urljoin(url, link['href'])]))
+                    meeting_date = extract_date(title) or extract_date(href)
+                    meetings.append(Meeting(title, meeting_date, [urljoin(url, href)]))
 
             # 3) Return the list of meetings
             return meetings

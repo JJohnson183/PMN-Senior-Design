@@ -10,7 +10,7 @@ civicClerkFileTypes = ("Agenda", "Agenda Packet")  # Only keep these kinds of fi
 #=================================== CivicClerk ==============================================#
 # A CivicClerk portal (e.g. kalamazoomi.portal.civicclerk.com), read through its API
 class CivicClerkFetcher(Fetcher):
-    # Fetch PDFs from CivicClerk API
+    # Fetch the portal's meetings from today onward, with their agenda PDF links
     def fetch(self, url):
         try:
             # 1) Build the API address from the portal's city name (e.g. "kalamazoomi")
@@ -27,7 +27,8 @@ class CivicClerkFetcher(Fetcher):
                     response.raise_for_status()
                     data = response.json()
                     events += data["value"]
-                    next_url, params = data.get("@odata.nextLink"), None
+                    next_url = data.get("@odata.nextLink")
+                    params = None  # The "next page" link already includes the filters
             except requests.RequestException as e:
                 # Keep the meetings already fetched (later pages can't be reached without this one's "next page" link)
                 print(f"Error fetching {next_url}, results may be incomplete: {e}")
@@ -46,8 +47,9 @@ class CivicClerkFetcher(Fetcher):
 
                 # 3.2) Join the filled-in address parts: "City Hall, 241 W. South Street, Kalamazoo, MI 49007"
                 place = event.get("eventLocation") or {}
-                parts = [place.get("address1"), place.get("address2"), place.get("city"), f"{place.get('state') or ''} {place.get('zipCode') or ''}".strip()]
-                location = ", ".join(part for part in parts if part) or None
+                state_zip = f"{place.get('state') or ''} {place.get('zipCode') or ''}".strip()  # "MI 49007"
+                parts = [place.get("address1"), place.get("address2"), place.get("city"), state_zip]
+                location = ", ".join(part for part in parts if part) or None  # Join the non-blank parts, None if all are blank
 
                 # 3.3) Keep every event, even without PDFs yet
                 start = datetime.fromisoformat(event["startDateTime"]).date()  # "2026-10-14T18:00:00Z" -> 2026-10-14

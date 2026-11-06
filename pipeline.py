@@ -16,6 +16,10 @@ def pick_fetcher(url):
         return CivicClerkFetcher()
     return HtmlPageFetcher()
 
+# True if the date is from today to maxDaysAhead out
+def in_date_range(day, today):
+    return today <= day <= today + timedelta(days=maxDaysAhead)
+
 # Fill a meeting's missing date, location and time from its first PDF (True if the PDF was read)
 def fill_missing_info(meeting):
     # 1) Skip meetings with no PDF or nothing missing
@@ -48,14 +52,13 @@ def get_meetings(url):
 
     # 2) Drop meetings dated outside today to a year ahead (undated ones may get a date from their PDF)
     today = date.today()
-    lastDate = today + timedelta(days=maxDaysAhead)
-    meetings = [meeting for meeting in meetings if meeting.date is None or today <= meeting.date <= lastDate]
+    meetings = [meeting for meeting in meetings if meeting.date is None or in_date_range(meeting.date, today)]
 
     # 3) Fill missing info from each meeting's PDF (10 at a time to keep it fast)
     with ThreadPoolExecutor(max_workers=10) as pool:
         read = sum(pool.map(fill_missing_info, meetings))
 
     # 4) Drop meetings still undated, or whose PDF date is out of range
-    upcoming = [meeting for meeting in meetings if meeting.date is not None and today <= meeting.date <= lastDate]
+    upcoming = [meeting for meeting in meetings if meeting.date is not None and in_date_range(meeting.date, today)]
     print(f"Read {read} PDFs, kept {len(upcoming)} of {fetched} meetings (dropped past, undated, or over a year ahead)")
     return upcoming
