@@ -1,4 +1,4 @@
-from fetcher import get_meetings
+from pipeline import get_meetings
 
 
 testUrl = "https://kalamazoomi.portal.civicclerk.com"

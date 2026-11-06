@@ -1,16 +1,13 @@
 from models import Meeting
-from utils import extract_date
-from processor import fill_missing_info
+from utils.dates import extract_date
 import requests
 from bs4 import BeautifulSoup # Used for parsing HTML content for extracting links
 from urllib.parse import urljoin, urlparse
-from datetime import date, datetime, timedelta
-from concurrent.futures import ThreadPoolExecutor
+from datetime import date, datetime
 
 
 civicClerkCheck = "civicclerk.com"  # Check if the URL is from CivicClerk
 civicClerkFileTypes = ("Agenda", "Agenda Packet")  # Only keep these kinds of files
-maxDaysAhead = 365  # Dates further out than this are typos (e.g. "2108" for "2018"), not real meetings
 
 #=================================== Fetching ==============================================#
 # Fetch all PDF links from a given HTML webpage (doesn't work for ones that load content dynamically with JavaScript)
@@ -91,25 +88,3 @@ def fetch_meetings(url):
     if civicClerkCheck in url:
         return fetch_meetings_from_civic_clerk(url)
     return fetch_meetings_from_html_webpage(url)
-
-# Fetch a site's meetings, fill missing info from their PDFs, and keep only upcoming ones
-def get_meetings(url):
-    # 1) Fetch the meetings
-    meetings = fetch_meetings(url)
-    if not meetings:
-        return meetings
-    fetched = len(meetings)
-
-    # 2) Drop meetings dated outside today to a year ahead (undated ones may get a date from their PDF)
-    today = date.today()
-    lastDate = today + timedelta(days=maxDaysAhead)
-    meetings = [meeting for meeting in meetings if meeting.date is None or today <= meeting.date <= lastDate]
-
-    # 3) Fill missing info from each meeting's PDF (10 at a time to keep it fast)
-    with ThreadPoolExecutor(max_workers=10) as pool:
-        read = sum(pool.map(fill_missing_info, meetings))
-
-    # 4) Drop meetings still undated, or whose PDF date is out of range
-    upcoming = [meeting for meeting in meetings if meeting.date is not None and today <= meeting.date <= lastDate]
-    print(f"Read {read} PDFs, kept {len(upcoming)} of {fetched} meetings (dropped past, undated, or over a year ahead)")
-    return upcoming

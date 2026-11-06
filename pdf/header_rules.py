@@ -1,14 +1,7 @@
 import re
-import requests
-import threading
-import pypdfium2 as pdfium # Used for reading the text out of PDF files
-from datetime import date, time, timedelta
-from email.utils import parsedate_to_datetime
-from utils import extract_date
+from datetime import time
+from utils.dates import extract_date
 
-
-uploadWindowDays = 30  # Undated PDFs uploaded longer ago than this are too old to be an upcoming agenda
-pdfiumLock = threading.Lock()  # PDFium can't read PDFs on two threads at once
 
 #============================ Patterns ==============================#
 
@@ -46,29 +39,6 @@ leadingWordsPattern = re.compile(r"^(?:at|in)\s+the\s+", re.I)
 
 
 #============================= Manual Extraction ==============================#
-# Extract the text from a PDF file
-def extract_text_from_pdf(pdf_url):
-    try:
-        # 1) Download the PDF into memory
-        response = requests.get(pdf_url, timeout=10)
-        response.raise_for_status()
-
-        # 2) Read the text from every page and join it into one string ("\f" marks each new page)
-        with pdfiumLock, pdfium.PdfDocument(response.content) as pdf:
-            text = "\f".join(page.get_textpage().get_text_bounded() for page in pdf)
-
-        # 3) Use "\n" line endings, and remove the "\x02" PDFium puts where a word was hyphenated across two lines
-        text = text.replace("\r\n", "\n").replace("\x02", "")
-
-        # 4) Warn if no text was found since the PDF is likely a scanned image
-        if not text.strip():
-            print(f"No text found in {pdf_url}, it may be a scanned image")
-
-        return text
-    except Exception as e:
-        print(f"Error extracting PDF {pdf_url}: {e}")
-        return None
-
 # Date, location and start time from an agenda's first page (None if not found)
 def extract_meeting_info(text):
     header = get_header(text)
@@ -135,36 +105,3 @@ def extract_location(header):
 
     # 5) Online only: "VIRTUAL ZOOM MEETING"
     return next((line for line in header if re.search(r"\bvirtual\b|\bzoom meeting\b", line, re.I)), None)
-
-#=========================== AI Extraction ===================================#
-
-# TODO
-
-
-
-#============================= Core Flow ====================================#
-# Fill a meeting's missing date, location and time from its first PDF (True if the PDF was read)
-def fill_missing_info(meeting):
-    # 1) Skip meetings with no PDF or nothing missing
-    if not meeting.has_pdfs() or None not in (meeting.date, meeting.location, meeting.time):
-        return False
-
-    # 2) Undated: skip files uploaded too long ago to be an upcoming agenda (read it if the server doesn't say)
-    link = meeting.pdf_links[0]
-    if meeting.date is None:
-        try:
-            uploaded = requests.head(link, timeout=10, allow_redirects=True).headers.get("Last-Modified")
-            if uploaded and parsedate_to_datetime(uploaded).date() < date.today() - timedelta(days=uploadWindowDays):
-                return False
-        except (requests.RequestException, ValueError, TypeError):
-            pass
-
-    # 3) Read the PDF and fill only the empty fields
-    text = extract_text_from_pdf(link)
-    if text is None:
-        return False
-    info = extract_meeting_info(text)
-    meeting.date = meeting.date or info["date"]
-    meeting.location = meeting.location or info["location"]
-    meeting.time = meeting.time or info["time"]
-    return True

@@ -1,8 +1,8 @@
 import pytest
 from datetime import date, time
 from pathlib import Path
-from utils import extract_date
-from processor import extract_meeting_info
+from utils.dates import extract_date
+from pdf.header_rules import extract_meeting_info
 
 #=================================================================#
 #============================ Dates ==============================#
