@@ -61,6 +61,14 @@ testUrl = "https://kalamazoomi.portal.civicclerk.com"
 python -X utf8 main.py > result.txt
 ```
 
+### 6) Run the tests
+
+```
+pytest
+```
+
+Every case should pass. Known gaps show as `xfailed` (expected to fail).
+
 ## How it works
 
 ### 1) Fetch the meetings
