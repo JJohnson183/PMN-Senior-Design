@@ -41,7 +41,25 @@ source .venv/bin/activate
 
 You will see `(.venv)` at the start of the terminal line when it is active.
 
-### 4) Run the script
+### 4) Set the AI key (optional)
+
+The AI (Claude) reads each agenda PDF and writes a short summary. Without a key everything
+still runs: each PDF prints a notice and manual extraction is used instead. Each run with a
+key costs a little money. Never put the key in the code please.
+
+Windows (PowerShell), for this terminal only:
+
+```
+$env:ANTHROPIC_API_KEY = "api-key"
+```
+
+Mac / Linux:
+
+```
+export ANTHROPIC_API_KEY="api-key"
+```
+
+### 5) Run the script
 
 ```
 python main.py
@@ -53,7 +71,7 @@ To check a different website, open `main.py` and change the `testUrl` line near 
 testUrl = "https://kalamazoomi.portal.civicclerk.com"
 ```
 
-### 5) Save the output to a file (optional)
+### 6) Save the output to a file (optional)
 
 `-X utf8` stops Windows from crashing on special characters like ✓. It is not an issue on Mac / Linux.
 
@@ -61,13 +79,14 @@ testUrl = "https://kalamazoomi.portal.civicclerk.com"
 python -X utf8 main.py > result.txt
 ```
 
-### 6) Run the tests
+### 7) Run the tests
 
 ```
 pytest
 ```
 
-Every case should pass. Known gaps show as `xfailed` (expected to fail).
+Every case should pass. Known gaps show as `xfailed` (expected to fail). The tests never
+call the AI, so they need no key and cost nothing.
 
 ## How it works
 
@@ -87,12 +106,22 @@ Drops meetings before today or more than a year ahead (a year ahead is likely a 
 
 ### 3) Fill missing info from the PDF
 
-- Only reads the first PDF, and only if the meeting is missing a date, time or location.
+- Only reads the first PDF, and only if the meeting is missing a date, time, location or summary.
 - Undated PDFs uploaded more than 30 days ago are skipped as too old to be upcoming.
-- Only reads page 1 above the first agenda item (e.g. "1. Call to Order").
+- Sends the first 3 pages to the AI for the date, time, location and a summary. Each answer is checked (a real date and time, length limits).
+- If the AI fails, or leaves a field empty, or a field fails its check, manual extraction fills it. Manual extraction only reads page 1 above the first agenda item (e.g. "1. Call to Order").
 - Only fills empty fields. Never replaces what came from the site.
 - Reads 10 PDFs at a time to keep it fast.
 
 ### 4) Drop anything left over
 
 Drops meetings still without a date, or whose PDF date is out of range.
+
+## AI model
+
+Uses **Claude Haiku 5.5** (`aiModel` in `pdf/ai_extraction.py`).
+
+- **Why:** it is the cheapest current Claude model and is made for simple, high-volume jobs like reading a few fields from an agenda. In testing it did as well as Sonnet 5.5, which costs 20 times more.
+- **Price:** $0.10 per million tokens sent and $0.50 per million tokens written back (a token is about 4 characters).
+- **Estimated use:** each PDF sends about 1,150 tokens and gets up to about 600 back, so about $0.02 to $0.04 per 100 PDFs. A run only reads PDFs for meetings whose agenda is posted, and agendas usually go up about a week ahead, so each run reads only a handful. Even daily runs cost a few cents a month.
+- **Testing so far:** without an API key, Haiku and Sonnet each read 47 real sample agendas. Both got every date and time right and nearly every location, and wrote accurate summaries. Tested with seperate Claude plan, real API calls are not tested yet.

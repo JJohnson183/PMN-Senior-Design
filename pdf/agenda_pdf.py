@@ -3,12 +3,13 @@ import threading
 import pypdfium2 as pdfium # Used for reading the text out of PDF files
 from email.utils import parsedate_to_datetime
 from pdf.header_rules import extract_meeting_info
+from pdf.ai_extraction import extract_with_ai
 
 
 pdfiumLock = threading.Lock()  # PDFium can't read PDFs on two threads at once
 
 #============================= Agenda PDF ==============================#
-# One agenda PDF online: when it was uploaded, its text, and the meeting info on page 1
+# One agenda PDF online: when it was uploaded, its text, and the meeting info in it
 class AgendaPdf:
     # Store the PDF's link (nothing is downloaded until a method needs it)
     def __init__(self, url):
@@ -46,13 +47,23 @@ class AgendaPdf:
             print(f"Error extracting PDF {self.url}: {e}")
             return None
 
-    # Date, location and start time from page 1 (None if the PDF can't be read)
+    # Date, location, start time and summary: the AI first, manual extraction as backup (None if the PDF can't be read)
     def meeting_info(self):
+        # 1) Get the PDF's text and the manual extraction results
         text = self.text()
         if text is None:
             return None
-        return extract_meeting_info(text)
+        manual = extract_meeting_info(text)
 
-#=========================== AI Extraction ===================================#
+        # 2) Extract information from the pdfs with AI
+        ai = extract_with_ai(text, self.url)
+        if ai is None:
+            manual["summary"] = None
+            return manual
 
-# TODO
+        # 3) Use the AI results and the manual extraction results for empty or failed fields (failed ones are empty)
+        info = {"date": ai["date"], "location": ai["location"], "time": ai["time"], "summary": ai["summary"]}
+        for name in ("date", "location", "time"):
+            if info[name] is None:
+                info[name] = manual[name]
+        return info

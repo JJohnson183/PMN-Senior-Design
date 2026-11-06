@@ -20,10 +20,10 @@ def pick_fetcher(url):
 def in_date_range(day, today):
     return today <= day <= today + timedelta(days=maxDaysAhead)
 
-# Fill a meeting's missing date, location and time from its first PDF (True if the PDF was read)
+# Fill a meeting's missing date, location, time and summary from its first PDF (True if the PDF was read)
 def fill_missing_info(meeting):
     # 1) Skip meetings with no PDF or nothing missing
-    if not meeting.has_pdfs() or None not in (meeting.date, meeting.location, meeting.time):
+    if not meeting.has_pdfs() or None not in (meeting.date, meeting.location, meeting.time, meeting.summary):
         return False
 
     # 2) Undated: skip files uploaded too long ago to be an upcoming agenda (read it if the server doesn't say)
@@ -40,6 +40,7 @@ def fill_missing_info(meeting):
     meeting.date = meeting.date or info["date"]
     meeting.location = meeting.location or info["location"]
     meeting.time = meeting.time or info["time"]
+    meeting.summary = meeting.summary or info["summary"]
     return True
 
 # Fetch a site's meetings, fill missing info from their PDFs, and keep only upcoming ones

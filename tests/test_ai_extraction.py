@@ -25,7 +25,7 @@ class FakeMessages:
 # Make anthropic.Anthropic() build a fake client for this test only (pytest's monkeypatch undoes it after)
 def use_fake_claude(monkeypatch, reply):
     messages = FakeMessages(reply)
-    def make_client():
+    def make_client(**settings):  # Takes and ignores the real client's settings (timeout, retries)
         return SimpleNamespace(messages=messages)
     monkeypatch.setattr(anthropic, "Anthropic", make_client)
     return messages

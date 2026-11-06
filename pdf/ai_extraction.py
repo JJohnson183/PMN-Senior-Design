@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 
 
-aiModel = "claude-opus-5-5"  # Placeholder until the best simple one is picked
+aiModel = "claude-haiku-5-5"  # Placeholder until the best simple one is picked
 aiPages = 3  # Pages sent to the AI (the agenda is usually in the first few)
 maxLocationLength = 200
 maxSummaryLength = 1000
@@ -17,11 +17,11 @@ aiPrompt = (
 )
 
 #============================= Fields ==============================#
-# The fields the AI must fill (each description is sent to the AI as part of the request)
+# The fields the AI must fill (each description is sent to the AI as part of the request so it knows what to do)
 class AgendaFields(BaseModel):
     date: str | None = Field(description="Meeting date as YYYY-MM-DD, e.g. 2026-10-13")
     time: str | None = Field(description="Start time as 24-hour HH:MM, e.g. 17:30")
-    location: str | None = Field(description="Meeting place as written, e.g. 7275 W. Main Street, Kalamazoo, MI 49009")
+    location: str | None = Field(description="Where the meeting is held, as the agenda gives it: a place name, an address, or both")
     summary: str | None = Field(description="2 to 3 sentences on what the meeting will cover")
 
 #============================= Checks ==============================#
@@ -68,7 +68,8 @@ def extract_with_ai(text, url):
 
     # 2) Send the pages to Claude and get the fields back
     try:
-        client = anthropic.Anthropic()  # Reads the key from the ANTHROPIC_API_KEY environment variable
+        # Reads the key from the ANTHROPIC_API_KEY environment variable, waits 20 seconds at most and retries once
+        client = anthropic.Anthropic(timeout=20, max_retries=1)
         response = client.messages.parse(
             model=aiModel,
             max_tokens=4000,

@@ -23,6 +23,7 @@ def print_meeting_info(meetings):
         print(f"Date: {meeting.date}")
         print(f"Time: {meeting.time}")
         print(f"Location: {meeting.location}")
+        print(f"Agenda summary: {meeting.summary}")
         print(f"PDF Links: {meeting.pdf_links}")
 
     # 2) Print a summary of the meetings
