@@ -57,7 +57,7 @@ ddev version v1.25.5
 ```
 
 ### 3) Pulling in PMN Site Backup
-Download the backup from the PMN site using the BackWPup plugin.
+Download the backup from the [PMN site](https://publicmedianet.org/wp-admin/admin.php?page=backwpupbackups&action=delete&jobdest-top=1_FOLDER&backupfiles%5B0%5D=%2Fhome%2Fwp_9hci6e%2Fpublicmedianet.org%2Fwp-content%2Fuploads%2Fbackwpup%2Fd72fbb%2Fbackups%2F2026-11-08_17-52-39_5LLS7O5202_FILE-DBDUMP-WPPLUGIN.zip&paged=1&_wpnonce=985b7f0a7f) using the BackWPup plugin.
 
 Navigate to the `local_wp/` folder and save this backup as `backup.zip`
 
