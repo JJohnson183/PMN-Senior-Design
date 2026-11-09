@@ -1,0 +1,103 @@
+# ddev pull backup
+# Imports a backup.zip from docroot into the DDEV project
+
+# - This script extracts and imports a .zip-backup-file created with
+#   plugin BackWPup https://wordpress.org/plugins/backwpup/
+# - The script will automatically replace (migrate) the URLs in database
+#   in the last step (See: files_import_command)
+# - The child theme folder will not be overwritten when files are imported
+
+# - Requires DDEV version >= 1.18.2 !
+#   (https://github.com/drud/ddev/releases/tag/v1.18.2)
+
+# --------- configuration  ------------
+
+environment_variables:
+  backupfile: backup.zip # needs to be in docroot (your project folder)
+  childThemeFolderName: "twentytwentyone-child"
+
+# -------------------------------------
+# eo configuration
+
+# - This step unzips the sql file from backup and generates a .sql.gz file,
+#   which DDEV imports automatically (via standard db_import_command).
+# - BackWPup generates a <DB_NAME>.sql file, therefore the determines the name
+#   of the .sql-file via bash (thx to https://stackoverflow.com/a/63494305/809939)
+# - The url replace-search will be done later in files_import_command because we need
+#   the all wordpress files in order to connect to the database via WP-CLI.
+db_pull_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd "/var/www/html/${DDEV_DOCROOT}" >/dev/null
+    mkdir -p /var/www/html/.ddev/.downloads/db
+    echo "Unzip wp-config.php from backup .zip-file to get DB_NAME-value ..."
+    unzip -j "${backupfile}" "wp-config.php" -d /var/www/html/.ddev/.downloads/db
+    pushd /var/www/html/.ddev/.downloads/db >/dev/null
+    echo "Unzipping $(sed -n "s/define( *'DB_NAME', *'\([^']*\)'.*/\1/p" wp-config.php).sql from backup .zip-file ... ";
+    unzip -j "/var/www/html/${DDEV_DOCROOT}${backupfile}" "$(sed -n "s/define( *'DB_NAME', *'\([^']*\)'.*/\1/p" wp-config.php).sql" -d .
+    echo "Rename and gzip the .sql file to let DDEV handle the db import ..."
+    mv "$(sed -n "s/define( *'DB_NAME', *'\([^']*\)'.*/\1/p" wp-config.php).sql" db.sql
+    gzip -cvf /var/www/html/.ddev/.downloads/db/db.sql > /var/www/html/.ddev/.downloads/db.sql.gz
+  service: web
+
+files_pull_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd /var/www/html/${DDEV_DOCROOT} >/dev/null
+    echo "Unzipping the backup .zip file to .ddev/.downloads/files ..."
+    unzip -q "${backupfile}" -d /var/www/html/.ddev/.downloads/files
+    # echo "Content of .ddev/.downloads/files after sync:"
+    # ls -l /var/www/html/.ddev/.downloads/files
+  service: web
+
+# Final steps:
+#   a) Overwrite files in docroot, without overwrite child theme folder
+#   b) Replace live site url (determined from backup) with DDEV_PRIMARY_URL (https://<name>.ddev.site)
+#   TODO: re-generate permalinks? other steps needed?
+files_import_command:
+  command: |
+    # set -x   # You can enable bash debugging output by uncommenting
+    set -eu -o pipefail
+    pushd "/var/www/html/${DDEV_DOCROOT}" >/dev/null
+
+    echo "Rsyncing all files and folders (except the child theme folder ${childThemeFolderName})"
+    rsync -azh --stats --progress \
+      --exclude=".git/" \
+      --exclude=".gitignore" \
+      --exclude=".ddev/" \
+      --exclude="README.md" \
+      --exclude="LICENSE" \
+      --exclude="wp-content/themes/${childThemeFolderName}" \
+      /var/www/html/.ddev/.downloads/files/ .
+    
+    echo "Adjusting wp-config to connect to DDEV database (credentials) ..."
+    # (DDEV uses db,db,db as DB_USER,-PASSWORD and -HOST)
+    wp config set DB_NAME "db" && wp config set DB_USER "db" && wp config set DB_PASSWORD "db" && wp config set DB_HOST "db"
+
+    echo "Replacing the old URL ($(wp option get siteurl)) in database with DDEV local url (${DDEV_PRIMARY_URL})..."
+    wp search-replace "$(wp option get siteurl)" "${DDEV_PRIMARY_URL}"
+    
+    # Additional update the wp config values, because some devs/hoster, e.g. raidboxes put it here (TODO: only remove if existent)
+    # TODO: if [wp config has] would be better, but how to implement it here?
+    # if [ "$(wp config has WP_HOME)" = 0 ]; then wp config delete WP_HOME; fi
+    # if [ "$(wp config has WP_SITEURL)" = 1 ]; then wp config delete WP_SITEURL; fi
+    # TODO: This throws a (false) error currently if var is not set, how do we get rid of it?
+    #       event with --no-add: 
+    #       Error: The constant or variable 'WP_HOME' is not defined in the 'wp-config.php' file.)
+    
+    # Set primary url in wp-config as well (see explaination above)
+    wp config set WP_HOME "${DDEV_PRIMARY_URL}"
+    wp config set WP_SITEURL "${DDEV_PRIMARY_URL}/"
+    
+    # Flush object cache
+    wp cache flush
+    
+    # Optional steps, depends on how you site is built:
+    # echo "Deleting config path for WP Super Cache (if installed) ..."
+    # wp config delete WPCACHEHOME
+    echo "All set, have fun! Run 'ddev launch' to open your site."
+  service: web
+# Resources used:
+# - Get config value via bash https://stackoverflow.com/a/63494305/809939; (not used)

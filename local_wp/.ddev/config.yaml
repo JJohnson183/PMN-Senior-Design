@@ -1,0 +1,13 @@
+# DDEV project configuration
+
+# Local website will be available via <name>.ddev.site
+name: pmn-local-wpsite
+type: wordpress
+docroot: ""
+nfs_mount_enabled: false
+mutagen_enabled: false
+
+# WebServer settings
+php_version: "8.1"
+mysql_version: "8.0"
+webserver_type: nginx-fpm
