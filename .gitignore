@@ -1,2 +1,5 @@
 __pycache__/
 .venv/
+local_wp/backup.zip
+local_wp/wp-config-ddev.php
+local_wp/wp-config.php
