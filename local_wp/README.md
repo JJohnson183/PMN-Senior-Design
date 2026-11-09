@@ -65,6 +65,6 @@ Run `ddev start` in the `local_wp/` folder
 
 Run `ddev pull backup` to start the import. This will take a while.
 
-
+You can now run `ddev launch` to open the site locally in your browser!
 
 
