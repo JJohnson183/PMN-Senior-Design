@@ -25,7 +25,7 @@ class AgendaPdf:
             return None
 
     # Extract the text from the PDF file (None if it can't be downloaded or read)
-    def text(self):
+    def extract_text(self):
         try:
             # 1) Download the PDF into memory
             response = requests.get(self.url, timeout=10)
@@ -50,7 +50,7 @@ class AgendaPdf:
     # Date, location, start time and summary: the AI first, manual extraction as backup (None if the PDF can't be read)
     def meeting_info(self):
         # 1) Get the PDF's text and the manual extraction results
-        text = self.text()
+        text = self.extract_text()
         if text is None:
             return None
         manual = extract_meeting_info(text)
