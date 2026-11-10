@@ -27,17 +27,15 @@ environment_variables:
 #   the all wordpress files in order to connect to the database via WP-CLI.
 db_pull_command:
   command: |
-    # set -x   # You can enable bash debugging output by uncommenting
+    #set -x   # You can enable bash debugging output by uncommenting
     set -eu -o pipefail
     pushd "/var/www/html/${DDEV_DOCROOT}" >/dev/null
     mkdir -p /var/www/html/.ddev/.downloads/db
-    echo "Unzip wp-config.php from backup .zip-file to get DB_NAME-value ..."
-    unzip -j "${backupfile}" "wp-config.php" -d /var/www/html/.ddev/.downloads/db
     pushd /var/www/html/.ddev/.downloads/db >/dev/null
-    echo "Unzipping $(sed -n "s/define( *'DB_NAME', *'\([^']*\)'.*/\1/p" wp-config.php).sql from backup .zip-file ... ";
-    unzip -j "/var/www/html/${DDEV_DOCROOT}${backupfile}" "$(sed -n "s/define( *'DB_NAME', *'\([^']*\)'.*/\1/p" wp-config.php).sql" -d .
+    echo "Unzipping local.sql from backup .zip-file ... ";
+    unzip -j "/var/www/html/${DDEV_DOCROOT}/${backupfile}" "*local.sql" -d .
     echo "Rename and gzip the .sql file to let DDEV handle the db import ..."
-    mv "$(sed -n "s/define( *'DB_NAME', *'\([^']*\)'.*/\1/p" wp-config.php).sql" db.sql
+    mv local.sql db.sql
     gzip -cvf /var/www/html/.ddev/.downloads/db/db.sql > /var/www/html/.ddev/.downloads/db.sql.gz
   service: web
 
