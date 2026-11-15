@@ -125,3 +125,22 @@ Uses **Claude Haiku 5.5** (`aiModel` in `pdf/ai_extraction.py`).
 - **Price:** $0.10 per million tokens sent and $0.50 per million tokens written back (a token is about 4 characters).
 - **Estimated use:** each PDF sends about 1,150 tokens and gets up to about 600 back, so about $0.02 to $0.04 per 100 PDFs. A run only reads PDFs for meetings whose agenda is posted, and agendas usually go up about a week ahead, so each run reads only a handful. Even daily runs cost a few cents a month.
 - **Testing so far:** without an API key, Haiku and Sonnet each read 47 real sample agendas. Both got every date and time right and nearly every location, and wrote accurate summaries. Tested with seperate Claude plan, real API calls are not tested yet.
+
+### Measuring it (costs money, needs the key)
+
+Runs the real AI calls and records each one's time, tokens, cost and answer. pytest never runs it.
+
+```
+python -X utf8 tests/tools/measure_ai.py <mode>
+```
+
+| Mode | What it does | Cost |
+|---|---|---|
+| `quick` | 3 sample agendas, to check the key works | under 1 cent |
+| `samples` | all 47 samples (page 1 text), scored against the tests' expected answers | about 1 cent |
+| `packets` | all 47 samples' real PDFs (first 3 pages, like the real flow), scored the same way | about 1.5 cents |
+| `baseline` | every site through the real flow with the AI off, as a comparison point | free |
+| `sites` | every site through the real flow with the AI on | under 1 cent |
+
+Results are saved as a `.json` and `.log` in `tests/tools/results/`. Each file starts with the
+settings the run used (model, prompt, limits), then the totals, then every result.

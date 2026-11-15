@@ -1,0 +1,58 @@
+
+===== https://kalamazoomi.portal.civicclerk.com
+Read 5 PDFs, kept 33 of 33 meetings (dropped past, undated, or over a year ahead)
+33 meetings in 5.7s: 5 with a time, 33 with a location, 5 with a summary, 5 AI calls
+Where the 5 PDFs' fields came from: {'date': {'site': 5}, 'time': {'ai': 5}, 'location': {'site': 5}, 'summary': {'ai': 5}}
+
+===== https://kalamazoocomi.portal.civicclerk.com
+Read 2 PDFs, kept 68 of 68 meetings (dropped past, undated, or over a year ahead)
+68 meetings in 7.2s: 2 with a time, 18 with a location, 2 with a summary, 2 AI calls
+Where the 2 PDFs' fields came from: {'date': {'site': 2}, 'time': {'ai': 2}, 'location': {'site': 2}, 'summary': {'ai': 2}}
+
+===== https://www.ktwp.org/board-of-trustees-meetings/
+0 meetings in 0.9s: 0 with a time, 0 with a location, 0 with a summary, 0 AI calls
+
+===== https://www.oshtemo.org/Boards-Committees/Township-Board/Township-Board-Agenda-Packets
+Read 1 PDFs, kept 0 of 586 meetings (dropped past, undated, or over a year ahead)
+0 meetings in 12.9s: 0 with a time, 0 with a location, 0 with a summary, 1 AI calls
+Where the 1 PDFs' fields came from: {'date': {'manual': 1}, 'time': {'none': 1}, 'location': {'none': 1}, 'summary': {'none': 1}}
+
+===== https://www.oshtemo.org/Boards-Committees/Planning-Commission/Planning-Commission-Agenda-Packets
+Read 1 PDFs, kept 1 of 209 meetings (dropped past, undated, or over a year ahead)
+1 meetings in 3.4s: 1 with a time, 1 with a location, 1 with a summary, 1 AI calls
+Where the 1 PDFs' fields came from: {'date': {'site': 1}, 'time': {'ai': 1}, 'location': {'ai': 1}, 'summary': {'ai': 1}}
+
+===== https://www.oshtemo.org/Boards-Committees/Zoning-Board-of-Appeals/ZBA-Agenda-Packets
+Read 0 PDFs, kept 0 of 88 meetings (dropped past, undated, or over a year ahead)
+0 meetings in 0.7s: 0 with a time, 0 with a location, 0 with a summary, 0 AI calls
+
+===== https://www.oshtemo.org/Boards-Committees/Downtown-Development-Authority/DDA-Agenda-Packets
+Read 1 PDFs, kept 1 of 65 meetings (dropped past, undated, or over a year ahead)
+1 meetings in 2.6s: 1 with a time, 1 with a location, 1 with a summary, 1 AI calls
+Where the 1 PDFs' fields came from: {'date': {'site': 1}, 'time': {'ai': 1}, 'location': {'ai': 1}, 'summary': {'ai': 1}}
+
+===== https://www.oshtemo.org/Boards-Committees/Capital-Improvements-Committee/CIC-Agenda-Packets
+Read 0 PDFs, kept 0 of 28 meetings (dropped past, undated, or over a year ahead)
+0 meetings in 0.8s: 0 with a time, 0 with a location, 0 with a summary, 0 AI calls
+
+===== https://www.oshtemo.org/Boards-Committees/South-Drake-Road-Corridor-Improvement-Authority/SoDA-Agenda-Packets
+Read 0 PDFs, kept 0 of 24 meetings (dropped past, undated, or over a year ahead)
+0 meetings in 0.6s: 0 with a time, 0 with a location, 0 with a summary, 0 AI calls
+
+AI calls: {
+ "calls": 10,
+ "errors": 0,
+ "secondsAverage": 1.69,
+ "secondsLongest": 2.27,
+ "inputTokensAverage": 2066,
+ "outputTokensAverage": 185,
+ "outputTokensLongest": 260,
+ "thinkingTokensAverage": 12,
+ "callsThatThought": 1,
+ "costTotal": 0.00299,
+ "costPerCall": 0.000299,
+ "repliesCutOffOrRefused": 0,
+ "fieldsThatFailedChecks": 0
+}
+Whole run took 34.8s
+Saved sites-2026-11-15-1652.json and sites-2026-11-15-1652.log in the results folder

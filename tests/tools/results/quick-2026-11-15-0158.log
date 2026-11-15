@@ -1,0 +1,23 @@
+oshtemo/planning-2026-10-22.txt: date ok, time ok, location same (Oshtemo Township Hall, 7275 West Main Street)
+city/city-commission-business-meeti-2026-10-19.txt: date ok, time ok, location same (City Commission Chambers – 241 West South Street)
+county/finance-and-administration-com-2026-10-02.txt: date ok, time ok, location same (Board of Commissioners Room, second floor, County Administration Building, 201 West Kalamazoo Avenue, Kalamazoo, Michigan)
+
+Score: date 3 / 3, time 3 / 3, location 3 same + 0 fuller / 3 (0 different), 0 unreadable
+
+AI calls: {
+ "calls": 3,
+ "errors": 0,
+ "secondsAverage": 1.86,
+ "secondsLongest": 2.73,
+ "inputTokensAverage": 1199,
+ "outputTokensAverage": 204,
+ "outputTokensLongest": 250,
+ "thinkingTokensAverage": 0,
+ "callsThatThought": 0,
+ "costTotal": 0.00067,
+ "costPerCall": 0.000222,
+ "repliesCutOffOrRefused": 0,
+ "fieldsThatFailedChecks": 0
+}
+Whole run took 5.7s
+Saved quick-2026-11-15-0158.json and quick-2026-11-15-0158.log in the results folder

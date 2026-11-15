@@ -1,0 +1,132 @@
+{
+ "mode": "quick: 3 samples, page 1 only",
+ "ranAt": "2026-11-15T01:58:24",
+ "totalSeconds": 5.7,
+ "aiSettings": {
+  "model": "claude-haiku-5-5",
+  "prompt": "Read the first pages of a public meeting agenda from a Michigan city, county or township. Give the meeting's date, start time and location as the agenda states them, and a 2 to 3 sentence summary in plain language of what the meeting will cover. Use null for any field the agenda doesn't state. Never guess.",
+  "fieldsAsked": {
+   "date": "Meeting date as YYYY-MM-DD, e.g. 2026-10-13",
+   "time": "Start time as 24-hour HH:MM, e.g. 17:30",
+   "location": "Where the meeting is held, as the agenda gives it: a place name, an address, or both",
+   "summary": "2 to 3 sentences on what the meeting will cover"
+  },
+  "outputConfig": {
+   "effort": "low"
+  },
+  "maxTokens": 4000,
+  "timeoutSeconds": 20,
+  "retries": 1,
+  "anthropicLibrary": "2.5.0"
+ },
+ "maxPagesSentPerPdf": 3,
+ "maxCharacters": {
+  "location": 200,
+  "summary": 1000
+ },
+ "pricePerMillionTokens": {
+  "input": 0.1,
+  "output": 0.5
+ },
+ "score": {
+  "scored": 3,
+  "unreadable": 0,
+  "dateOk": 3,
+  "timeOk": 3,
+  "locationSame": 3,
+  "locationFuller": 0,
+  "locationDifferent": 0
+ },
+ "totals": {
+  "calls": 3,
+  "errors": 0,
+  "secondsAverage": 1.86,
+  "secondsLongest": 2.73,
+  "inputTokensAverage": 1199,
+  "outputTokensAverage": 204,
+  "outputTokensLongest": 250,
+  "thinkingTokensAverage": 0,
+  "callsThatThought": 0,
+  "costTotal": 0.00067,
+  "costPerCall": 0.000222,
+  "repliesCutOffOrRefused": 0,
+  "fieldsThatFailedChecks": 0
+ },
+ "results": [
+  {
+   "file": "oshtemo/planning-2026-10-22.txt",
+   "pdfPages": 1,
+   "pagesSent": 1,
+   "aiCalled": true,
+   "seconds": 2.73,
+   "inputTokens": 1232,
+   "outputTokens": 250,
+   "thinkingTokens": 0,
+   "cost": 0.0002482,
+   "stopReason": "end_turn",
+   "rejectedFields": [],
+   "error": null,
+   "expectedDate": "2026-10-22",
+   "gotDate": "2026-10-22",
+   "dateOk": true,
+   "expectedTime": "18:00:00",
+   "gotTime": "18:00:00",
+   "timeOk": true,
+   "expectedLocation": "OSHTEMO TOWNSHIP HALL, 7275 WEST MAIN STREET",
+   "gotLocation": "Oshtemo Township Hall, 7275 West Main Street",
+   "locationMatch": "same",
+   "summaryLength": 582,
+   "summary": "The Oshtemo Charter Township Planning Commission will approve the agenda and the October 8, 2026 minutes, then hold a public hearing on a request by Chad and Sally Drobny to rezone 5.74 acres of an 80-acre parcel at 4385 North 2nd Street from AG Agricultural to RR Rural Residential. The commission will also hear a work session presentation from its planning consultant on suggested updates to lighting, parking and landscaping rules, setback examples for a planned neighborhood mixed use district, and a preliminary zoning map using new district names from the Comprehensive Plan."
+  },
+  {
+   "file": "city/city-commission-business-meeti-2026-10-19.txt",
+   "pdfPages": 1,
+   "pagesSent": 1,
+   "aiCalled": true,
+   "seconds": 1.46,
+   "inputTokens": 1058,
+   "outputTokens": 198,
+   "thinkingTokens": 0,
+   "cost": 0.0002048,
+   "stopReason": "end_turn",
+   "rejectedFields": [],
+   "error": null,
+   "expectedDate": "2026-10-19",
+   "gotDate": "2026-10-19",
+   "dateOk": true,
+   "expectedTime": "19:00:00",
+   "gotTime": "19:00:00",
+   "timeOk": true,
+   "expectedLocation": "City Commission Chambers – 241 West South Street",
+   "gotLocation": "City Commission Chambers – 241 West South Street",
+   "locationMatch": "same",
+   "summaryLength": 446,
+   "summary": "The City Commission will open its October 19, 2026 business meeting with an invocation, the Pledge of Allegiance, and proclamations recognizing Lights On After School, the 60th anniversary of Kalamazoo Valley Community College, and National First Responders Day. The consent agenda includes a motion to approve items 1 through 7, including a 2027 contract with PVS Chemical Solutions for sodium bisulfite used in wastewater treatment at $128,800."
+  },
+  {
+   "file": "county/finance-and-administration-com-2026-10-02.txt",
+   "pdfPages": 1,
+   "pagesSent": 1,
+   "aiCalled": true,
+   "seconds": 1.4,
+   "inputTokens": 1307,
+   "outputTokens": 165,
+   "thinkingTokens": 0,
+   "cost": 0.0002132,
+   "stopReason": "end_turn",
+   "rejectedFields": [],
+   "error": null,
+   "expectedDate": "2026-10-02",
+   "gotDate": "2026-10-02",
+   "dateOk": true,
+   "expectedTime": "10:00:00",
+   "gotTime": "10:00:00",
+   "timeOk": true,
+   "expectedLocation": "Board of Commissioners Room, second floor, County Administration Building, 201 West Kalamazoo Avenue, Kalamazoo, Michigan",
+   "gotLocation": "Board of Commissioners Room, second floor, County Administration Building, 201 West Kalamazoo Avenue, Kalamazoo, Michigan",
+   "locationMatch": "same",
+   "summaryLength": 277,
+   "summary": "The Kalamazoo County Finance and Administration Committee will take roll and public comment, then approve the draft minutes from its September 22, 2026 meeting. The main agenda items are a review of expenditures and a discussion of two listed items, with adjournment to follow."
+  }
+ ]
+}

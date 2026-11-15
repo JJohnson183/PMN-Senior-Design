@@ -1,0 +1,1481 @@
+{
+ "mode": "baseline: 9 sites with the AI off, free",
+ "ranAt": "2026-11-15T01:54:51",
+ "totalSeconds": 51.1,
+ "aiSettings": "AI off or never called",
+ "maxPagesSentPerPdf": 3,
+ "maxCharacters": {
+  "location": 200,
+  "summary": 1000
+ },
+ "pricePerMillionTokens": {
+  "input": 0.1,
+  "output": 0.5
+ },
+ "totals": {
+  "calls": 0,
+  "errors": 0
+ },
+ "results": [
+  {
+   "site": "https://kalamazoomi.portal.civicclerk.com",
+   "seconds": 4.8,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 33,
+   "withTime": 5,
+   "withLocation": 33,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {
+     "site": 5
+    },
+    "time": {
+     "manual": 5
+    },
+    "location": {
+     "site": 5
+    },
+    "summary": {
+     "none": 5
+    }
+   },
+   "pdfs": [
+    {
+     "title": "Downtown Economic Growth Authority Board",
+     "url": "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5591,plainText=false)",
+     "pdfPages": 2,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-16",
+      "time": null,
+      "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-16",
+      "location": "City Hall Community Room - 241 W. South Street",
+      "time": "15:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-16",
+      "time": "15:00:00",
+      "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    },
+    {
+     "title": "Downtown Development Authority Board",
+     "url": "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5595,plainText=false)",
+     "pdfPages": 2,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-16",
+      "time": null,
+      "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-16",
+      "location": "City Hall Community Room - 241 West South Street",
+      "time": "15:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-16",
+      "time": "15:00:00",
+      "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    },
+    {
+     "title": "City Commission Committee of the Whole",
+     "url": "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5593,plainText=false)",
+     "pdfPages": 2,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-16",
+      "time": null,
+      "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-16",
+      "location": "City Commission Chambers – 241 West South Street",
+      "time": "17:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-16",
+      "time": "17:00:00",
+      "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    },
+    {
+     "title": "City Commission Business Meeting",
+     "url": "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5581,plainText=false)",
+     "pdfPages": 4,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-16",
+      "time": null,
+      "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-16",
+      "location": "City Commission Chambers – 241 West South Street",
+      "time": "19:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-16",
+      "time": "19:00:00",
+      "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    },
+    {
+     "title": "Historic District Commission",
+     "url": "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5589,plainText=false)",
+     "pdfPages": 3,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-17",
+      "time": null,
+      "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-17",
+      "location": "City Commission Chambers at City Hall – 241 West South Street",
+      "time": "17:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-17",
+      "time": "17:00:00",
+      "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    }
+   ],
+   "meetings": [
+    {
+     "title": "Downtown Economic Growth Authority Board",
+     "date": "2026-11-16",
+     "pdf_links": [
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5591,plainText=false)",
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5592,plainText=false)"
+     ],
+     "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": "15:00:00",
+     "summary": null
+    },
+    {
+     "title": "Downtown Development Authority Board",
+     "date": "2026-11-16",
+     "pdf_links": [
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5595,plainText=false)",
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5596,plainText=false)"
+     ],
+     "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": "15:00:00",
+     "summary": null
+    },
+    {
+     "title": "City Commission Committee of the Whole",
+     "date": "2026-11-16",
+     "pdf_links": [
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5593,plainText=false)",
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5594,plainText=false)"
+     ],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": "17:00:00",
+     "summary": null
+    },
+    {
+     "title": "City Commission Business Meeting",
+     "date": "2026-11-16",
+     "pdf_links": [
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5581,plainText=false)",
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5582,plainText=false)"
+     ],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": "19:00:00",
+     "summary": null
+    },
+    {
+     "title": "Historic District Commission",
+     "date": "2026-11-17",
+     "pdf_links": [
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5589,plainText=false)",
+      "https://kalamazoomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5590,plainText=false)"
+     ],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": "17:00:00",
+     "summary": null
+    },
+    {
+     "title": "Environmental Concerns Committee",
+     "date": "2026-11-18",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Economic Development Corporation Board of Directors",
+     "date": "2026-11-19",
+     "pdf_links": [],
+     "location": "245 N. Rose Street, Suite 100, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Brownfield Redevelopment Authority Board of Directors",
+     "date": "2026-11-19",
+     "pdf_links": [],
+     "location": "245 N. Rose Street, Suite 100, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Northside Cultural Business District Authority Board",
+     "date": "2026-11-19",
+     "pdf_links": [],
+     "location": "Northside Association for Community Development (NACD), 612 N. Park Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Natural Features Protection Review Board",
+     "date": "2026-11-24",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Civil Rights Board",
+     "date": "2026-12-02",
+     "pdf_links": [],
+     "location": "Department of Diversity, Equity, and Inclusion, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Planning Commission - Regular Meeting",
+     "date": "2026-12-03",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Foundation for Excellence Board of Directors Finance Committee",
+     "date": "2026-12-07",
+     "pdf_links": [],
+     "location": "241 W South St, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Foundation for Excellence Board of Directors Executive Committee ",
+     "date": "2026-12-07",
+     "pdf_links": [],
+     "location": "241 W South St, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "City Commission Committee of the Whole",
+     "date": "2026-12-07",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "City Commission Business Meeting",
+     "date": "2026-12-07",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Employees Retirement System Board of Trustees (Pension Board)",
+     "date": "2026-12-09",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Historic Preservation Commission",
+     "date": "2026-12-09",
+     "pdf_links": [],
+     "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Zoning Board of Appeals",
+     "date": "2026-12-10",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, Michigan 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Foundation for Excellence Board of Directors Audit Subcommittee",
+     "date": "2026-12-14",
+     "pdf_links": [],
+     "location": "241 W South St, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "City Commission Budget Work Session",
+     "date": "2026-12-14",
+     "pdf_links": [],
+     "location": "City Hall, 241 W. South Street, Kalamazoo, Michigan 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Historic District Commission",
+     "date": "2026-12-15",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Environmental Concerns Committee",
+     "date": "2026-12-16",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Economic Development Corporation Board of Directors",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": "245 N. Rose Street, Suite 100, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Brownfield Redevelopment Authority Board of Directors",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": "245 N. Rose Street, Suite 100, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Northside Cultural Business District Authority Board",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": "Northside Association for Community Development (NACD), 612 N. Park Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Natural Features Protection Review Board",
+     "date": "2026-12-18",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Downtown Economic Growth Authority Board",
+     "date": "2026-12-21",
+     "pdf_links": [],
+     "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Downtown Development Authority Board",
+     "date": "2026-12-21",
+     "pdf_links": [],
+     "location": "City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "City Commission Committee of the Whole",
+     "date": "2026-12-21",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "City Commission Business Meeting",
+     "date": "2026-12-21",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Planning Commission - Regular Meeting",
+     "date": "2027-01-07",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Zoning Board of Appeals",
+     "date": "2027-01-14",
+     "pdf_links": [],
+     "location": "Kalamazoo City Hall, 241 W. South Street, Kalamazoo, Michigan 49007",
+     "time": null,
+     "summary": null
+    }
+   ]
+  },
+  {
+   "site": "https://kalamazoocomi.portal.civicclerk.com",
+   "seconds": 7.8,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 68,
+   "withTime": 2,
+   "withLocation": 18,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {
+     "site": 2
+    },
+    "time": {
+     "manual": 2
+    },
+    "location": {
+     "site": 2
+    },
+    "summary": {
+     "none": 2
+    }
+   },
+   "pdfs": [
+    {
+     "title": "November 17, 2026 Committee of the Whole",
+     "url": "https://kalamazoocomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13449,plainText=false)",
+     "pdfPages": 1,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-17",
+      "time": null,
+      "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-17",
+      "location": "Board of Commissioners Chambers, second floor, County Administration Building, 201 West Kalamazoo Avenue, Kalamazoo, Michigan",
+      "time": "16:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-17",
+      "time": "16:00:00",
+      "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    },
+    {
+     "title": "November 17, 2026 Board of Commissioners Regular Board",
+     "url": "https://kalamazoocomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13461,plainText=false)",
+     "pdfPages": 3,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "site",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-17",
+      "time": null,
+      "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-17",
+      "location": "Board of Commissioners Chambers, second floor, County Administration Building, 201 West Kalamazoo Avenue, Kalamazoo, Michigan",
+      "time": "18:30:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-17",
+      "time": "18:30:00",
+      "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+      "summary": null
+     }
+    }
+   ],
+   "meetings": [
+    {
+     "title": "Policy 13 Ad Hoc Committee",
+     "date": "2026-11-16",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "CIP Committee - CANCELED",
+     "date": "2026-11-16",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Road Commission of Kalamazoo County",
+     "date": "2026-11-17",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "November 17, 2026 Committee of the Whole",
+     "date": "2026-11-17",
+     "pdf_links": [
+      "https://kalamazoocomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13449,plainText=false)",
+      "https://kalamazoocomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13459,plainText=false)"
+     ],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": "16:00:00",
+     "summary": null
+    },
+    {
+     "title": "November 17, 2026 Board of Commissioners Regular Board",
+     "date": "2026-11-17",
+     "pdf_links": [
+      "https://kalamazoocomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13461,plainText=false)",
+      "https://kalamazoocomi.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13462,plainText=false)"
+     ],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": "18:30:00",
+     "summary": null
+    },
+    {
+     "title": "Materials Management Planning Committee",
+     "date": "2026-11-18",
+     "pdf_links": [],
+     "location": "4400 S. 26th Street, Kalamazoo, MI 49048",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Older Adult Services Advisory Council",
+     "date": "2026-11-18",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Brownfield Redevelopment Authority and Economic Development Corp. Meeting",
+     "date": "2026-11-19",
+     "pdf_links": [],
+     "location": "201 W Kalamazoo Ave, Room 207-A, Kalamazoo, Michigan 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Remonumentation Peer Review Group",
+     "date": "2026-11-19",
+     "pdf_links": [],
+     "location": "2900 Lake Street, Room B, Kalamazoo, Michigan 49048",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Diversity, Equity & Inclusion Committee",
+     "date": "2026-11-19",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": " Community Corrections Advisory Board",
+     "date": "2026-11-20",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2026-11-20",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Kalamazoo County Event Center Assessment District",
+     "date": "2026-11-20",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Community Grants Ad Hoc Committee",
+     "date": "2026-11-23",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Integrated Services of Kalamazoo",
+     "date": "2026-11-23",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Road Commission of Kalamazoo County",
+     "date": "2026-12-01",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "December 1, 2026 Committee of the Whole",
+     "date": "2026-12-01",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "December 1, 2026 Board of Commissioners Regular Board",
+     "date": "2026-12-01",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Retirement Investment Committee",
+     "date": "2026-12-02",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Public Housing Commission",
+     "date": "2026-12-03",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2026-12-04",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Veterans Affairs Committee",
+     "date": "2026-12-08",
+     "pdf_links": [],
+     "location": "HCS, 311 E. Alcott Street, Conference Room 361, Kalamazoo, MI  49009",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "December 9, 2026 Building Authority",
+     "date": "2026-12-09",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Materials Management Planning Committee",
+     "date": "2026-12-09",
+     "pdf_links": [],
+     "location": "4400 S. 26th Street, Kalamazoo, MI 49048",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Older Adult Services Advisory Council",
+     "date": "2026-12-09",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board Appointment Committee Meeting ",
+     "date": "2026-12-10",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Ave., Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Kalamazoo County Event Center Assessment District",
+     "date": "2026-12-11",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "December 11, 2026 Housing Millage Funding Allocation Ad Hoc Committee Meeting",
+     "date": "2026-12-11",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Ave, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Joint CCTA/KCTA",
+     "date": "2026-12-14",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Road Commission of Kalamazoo County",
+     "date": "2026-12-15",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "December 15, 2026 Committee of the Whole",
+     "date": "2026-12-15",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "December 15, 2026 Board of Commissioners Regular Board",
+     "date": "2026-12-15",
+     "pdf_links": [],
+     "location": "201 W. Kalamazoo Avenue, Kalamazoo, MI 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Public Works Meeting",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": "2900  Lake Street, Room B, Kalamazoo, Michigan 49048",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Brownfield Redevelopment Authority and Economic Development Corp. Meeting",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": "201 W Kalamazoo Ave, Room 207-A, Kalamazoo, Michigan 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Remonumentation Peer Review Group",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": "201 W Kalamazoo Ave, Room 105, Kalamazoo, Michigan 49007",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Diversity, Equity & Inclusion Committee",
+     "date": "2026-12-17",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2026-12-18",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Capital Improvement Program Committee",
+     "date": "2026-12-21",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Integrated Services of Kalamazoo",
+     "date": "2026-12-28",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Road Commission of Kalamazoo County",
+     "date": "2026-12-29",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-01-05",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-01-05",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Regular Meeting (1st Tues)",
+     "date": "2027-01-05",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Veterans Affairs Committee",
+     "date": "2027-01-12",
+     "pdf_links": [],
+     "location": "HCS, 311 E. Alcott Street, Conference Room 361, Kalamazoo, MI  49001",
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (3rd Tues)",
+     "date": "2027-01-19",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (3rd Tues)",
+     "date": "2027-01-19",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Regular Meeting (3rd Tues)",
+     "date": "2027-01-19",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Regular Meeting (3rd Tues)",
+     "date": "2027-01-19",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-01-21",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Diversity, Equity & Inclusion Committee",
+     "date": "2027-01-21",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-02-02",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Animal Services & Enforcement Advisory Board",
+     "date": "2027-02-09",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-02-18",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Diversity, Equity & Inclusion Committee",
+     "date": "2027-02-18",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-03-02",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-03-18",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-04-06",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-04-15",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-05-04",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-05-20",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-06-01",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-06-17",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-07-06",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-07-15",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Board of Commissioners - Committee of the Whole (1st Tues)",
+     "date": "2027-08-03",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-08-19",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    },
+    {
+     "title": "Finance and Administration Committee",
+     "date": "2027-09-16",
+     "pdf_links": [],
+     "location": null,
+     "time": null,
+     "summary": null
+    }
+   ]
+  },
+  {
+   "site": "https://www.ktwp.org/board-of-trustees-meetings/",
+   "seconds": 1.8,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 0,
+   "withTime": 0,
+   "withLocation": 0,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {},
+    "time": {},
+    "location": {},
+    "summary": {}
+   },
+   "pdfs": [],
+   "meetings": []
+  },
+  {
+   "site": "https://www.oshtemo.org/Boards-Committees/Township-Board/Township-Board-Agenda-Packets",
+   "seconds": 31.4,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 0,
+   "withTime": 0,
+   "withLocation": 0,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {
+     "manual": 1
+    },
+    "time": {
+     "none": 1
+    },
+    "location": {
+     "none": 1
+    },
+    "summary": {
+     "none": 1
+    }
+   },
+   "pdfs": [
+    {
+     "title": "Receipts and Disbursements(PDF, 457KB)",
+     "url": "https://www.oshtemo.org/files/assets/public/v/1/boards-and-committees/township-board/documents/11102026-rd-report.pdf",
+     "pdfPages": 70,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "manual",
+      "time": "none",
+      "location": "none",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": null,
+      "time": null,
+      "location": null,
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-01",
+      "location": null,
+      "time": null,
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-01",
+      "time": null,
+      "location": null,
+      "summary": null
+     }
+    }
+   ],
+   "meetings": []
+  },
+  {
+   "site": "https://www.oshtemo.org/Boards-Committees/Planning-Commission/Planning-Commission-Agenda-Packets",
+   "seconds": 2.4,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 1,
+   "withTime": 1,
+   "withLocation": 1,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {
+     "site": 1
+    },
+    "time": {
+     "manual": 1
+    },
+    "location": {
+     "manual": 1
+    },
+    "summary": {
+     "none": 1
+    }
+   },
+   "pdfs": [
+    {
+     "title": "November 19, 2026(PDF, 4MB)",
+     "url": "https://www.oshtemo.org/files/assets/public/v/1/boards-and-committees/planning-commission/agenda-packets/2026.11.19-planning-commission-agenda-packet.pdf",
+     "pdfPages": 84,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "manual",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-19",
+      "time": null,
+      "location": null,
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-19",
+      "location": "OSHTEMO TOWNSHIP HALL, 7275 WEST MAIN STREET",
+      "time": "18:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-19",
+      "time": "18:00:00",
+      "location": "OSHTEMO TOWNSHIP HALL, 7275 WEST MAIN STREET",
+      "summary": null
+     }
+    }
+   ],
+   "meetings": [
+    {
+     "title": "November 19, 2026(PDF, 4MB)",
+     "date": "2026-11-19",
+     "pdf_links": [
+      "https://www.oshtemo.org/files/assets/public/v/1/boards-and-committees/planning-commission/agenda-packets/2026.11.19-planning-commission-agenda-packet.pdf"
+     ],
+     "location": "OSHTEMO TOWNSHIP HALL, 7275 WEST MAIN STREET",
+     "time": "18:00:00",
+     "summary": null
+    }
+   ]
+  },
+  {
+   "site": "https://www.oshtemo.org/Boards-Committees/Zoning-Board-of-Appeals/ZBA-Agenda-Packets",
+   "seconds": 0.6,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 0,
+   "withTime": 0,
+   "withLocation": 0,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {},
+    "time": {},
+    "location": {},
+    "summary": {}
+   },
+   "pdfs": [],
+   "meetings": []
+  },
+  {
+   "site": "https://www.oshtemo.org/Boards-Committees/Downtown-Development-Authority/DDA-Agenda-Packets",
+   "seconds": 1.2,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 1,
+   "withTime": 1,
+   "withLocation": 1,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {
+     "site": 1
+    },
+    "time": {
+     "manual": 1
+    },
+    "location": {
+     "manual": 1
+    },
+    "summary": {
+     "none": 1
+    }
+   },
+   "pdfs": [
+    {
+     "title": "November 19, 2026(PDF, 3MB)",
+     "url": "https://www.oshtemo.org/files/assets/public/v/1/boards-and-committees/dda/agenda-packets/2026.11.19-dda-agenda-packet_1.pdf",
+     "pdfPages": 16,
+     "pagesSent": 0,
+     "aiCalled": false,
+     "seconds": null,
+     "inputTokens": null,
+     "outputTokens": null,
+     "thinkingTokens": null,
+     "cost": null,
+     "stopReason": null,
+     "rejectedFields": null,
+     "error": null,
+     "source": {
+      "date": "site",
+      "time": "manual",
+      "location": "manual",
+      "summary": "none"
+     },
+     "fromSite": {
+      "date": "2026-11-19",
+      "time": null,
+      "location": null,
+      "summary": null
+     },
+     "aiFields": null,
+     "manualFields": {
+      "date": "2026-11-19",
+      "location": "OSHTEMO COMMUNITY CENTER, 6407 PARKVIEW AVENUE",
+      "time": "15:00:00",
+      "summary": null
+     },
+     "final": {
+      "date": "2026-11-19",
+      "time": "15:00:00",
+      "location": "OSHTEMO COMMUNITY CENTER, 6407 PARKVIEW AVENUE",
+      "summary": null
+     }
+    }
+   ],
+   "meetings": [
+    {
+     "title": "November 19, 2026(PDF, 3MB)",
+     "date": "2026-11-19",
+     "pdf_links": [
+      "https://www.oshtemo.org/files/assets/public/v/1/boards-and-committees/dda/agenda-packets/2026.11.19-dda-agenda-packet_1.pdf"
+     ],
+     "location": "OSHTEMO COMMUNITY CENTER, 6407 PARKVIEW AVENUE",
+     "time": "15:00:00",
+     "summary": null
+    }
+   ]
+  },
+  {
+   "site": "https://www.oshtemo.org/Boards-Committees/Capital-Improvements-Committee/CIC-Agenda-Packets",
+   "seconds": 0.6,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 0,
+   "withTime": 0,
+   "withLocation": 0,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {},
+    "time": {},
+    "location": {},
+    "summary": {}
+   },
+   "pdfs": [],
+   "meetings": []
+  },
+  {
+   "site": "https://www.oshtemo.org/Boards-Committees/South-Drake-Road-Corridor-Improvement-Authority/SoDA-Agenda-Packets",
+   "seconds": 0.6,
+   "aiCalls": 0,
+   "cost": 0,
+   "meetingsKept": 0,
+   "withTime": 0,
+   "withLocation": 0,
+   "withSummary": 0,
+   "sourcesForPdfsRead": {
+    "date": {},
+    "time": {},
+    "location": {},
+    "summary": {}
+   },
+   "pdfs": [],
+   "meetings": []
+  }
+ ]
+}
