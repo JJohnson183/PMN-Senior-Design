@@ -20,7 +20,7 @@ def use_fakes(monkeypatch, pdfText, aiResult):
         return pdfText
     def fake_ai(text, url):
         return aiResult
-    monkeypatch.setattr(AgendaPdf, "text", fake_text)
+    monkeypatch.setattr(AgendaPdf, "extract_text", fake_text)
     monkeypatch.setattr(agenda_pdf, "extract_with_ai", fake_ai)
 
 #=====================================================================#
