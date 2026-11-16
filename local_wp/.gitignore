@@ -1,0 +1,97 @@
+# Directories
+.tmb
+.well-known
+wp-admin/
+wp-includes/
+backup.zip
+
+## .ddev
+## Only need config.yaml and providers/
+.ddev/
+.ddev/addon-metadata   
+.ddev/docker-compose.phpmyadmin.yaml           
+.ddev/mysql          
+.ddev/web-build
+.ddev/apache          
+.ddev/db_snapshots  
+.ddev/docker-compose.phpmyadmin_norouter.yaml  
+.ddev/nginx_full  
+.ddev/share-providers  
+.ddev/web-entrypoint.d
+.ddev/commands        
+.ddev/db-build      
+.ddev/homeadditions                            
+.ddev/php         
+.ddev/traefik          
+.ddev/xhprof
+
+## wp-content/
+## We need to track the custom plugin, so the wp-content needs to 
+## ignore everything besides our custom plugin.
+wp-content/boost-cache
+wp-content/ewww
+wp-content/themes
+wp-content/upgrade
+wp-content/upgrade-temp-backup
+wp-content/uploads
+wp-content/index.php
+## Plugins: Ignore every plugin other than our custom one (currently connor-test)
+wp-content/plugins/404-to-homepage    
+wp-content/plugins/dreamhost-panel-login.php  
+wp-content/plugins/index.php             
+wp-content/plugins/pojo-accessibility     
+wp-content/plugins/surveyx-builder
+wp-content/plugins/aryo-activity-log  
+wp-content/plugins/elementor                  
+wp-content/plugins/indexnow              
+wp-content/plugins/post-and-page-builder  
+wp-content/plugins/wp-consent-api
+wp-content/plugins/boldgrid-easy-seo  
+wp-content/plugins/elementor-pro              
+wp-content/plugins/light-views-counter   
+wp-content/plugins/redirect-redirection   
+wp-content/plugins/wp-file-manager
+wp-content/plugins/boldgrid-gallery   
+wp-content/plugins/ewww-image-optimizer       
+wp-content/plugins/local-fonts-uploader  
+wp-content/plugins/relevanssi      
+wp-content/plugins/foxiz-core                 
+wp-content/plugins/nginx-helper          
+wp-content/plugins/speculation-rules
+
+
+# Files
+.htaccess
+.htaccess-premigrate
+.htaccess.bk
+.htaccess.old
+backwpup_readme.txt
+favicon.gif
+favicon.ico
+index.php
+license.txt
+local.sql
+manifest.json
+Public-Media-Network.pluginlist.2026-11-09.txt
+readme.html
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-ddev.php
+wp-config-premigrate.php
+wp-config-sample.php
+wp-config.old.1710974729.46058.php
+wp-config.old.1711117028.46678.php
+wp-config.old.1711752923.77841.php
+wp-config.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
+
+

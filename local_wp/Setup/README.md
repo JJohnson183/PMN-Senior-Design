@@ -54,6 +54,18 @@ In the `DDEV` terminal app or Windows Terminal `DDEV` profile, confirm that the 
 ddev version v1.25.5
 ```
 
+#### Optional) Install phpMyAdmin
+
+If you want to work with the database, using phpMyAdmin through ddev is the easiest way.
+
+To install it, in your DDEV terminal run the following commands
+
+```
+> ddev add-on get ddev/ddev-phpmyadmin
+> ddev restart
+```
+
+
 ### 2.5) Navigating with DDEV
 In the search bar, lookup `DDEV` and you'll find an application with an Ubuntu icon
 ![DDEV Image](ddev_screenshot.png)
