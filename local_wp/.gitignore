@@ -3,7 +3,7 @@
 
 # What we want to keep
 !.gitignore
-
+!/Setup
 !/.ddev/providers/backup.yaml
 !/.ddev/config.yaml
 !/wp-content/plugins/connor-test
