@@ -8,3 +8,5 @@
 !/.ddev/config.yaml
 !/wp-content/plugins/connor-test
 !/wp-content/plugins/boilerplate-test
+!/wp-content/plugins/hello-dolly
+!test.sql
